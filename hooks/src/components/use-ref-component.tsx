@@ -1,18 +1,22 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const UseRefComponent = () => {
-  const [inputValue, setInputValue] = useState(``);
+  const [inputValue, setInputValue] = useState('');
+  const value = useRef('');
   const handleClick = () => {
-    console.log(inputValue);
+    value.current = inputValue;
   };
-  console.log(inputValue);
+
+  // console.log(inputValue);
+  console.log(value.current);
+
   return (
     <div>
       <input
-        value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
+        value={inputValue}
       />
-      <button onClick={handleClick}>print the input</button>
+      <button onClick={handleClick}>save the input value in Ref</button>
     </div>
   );
 };
