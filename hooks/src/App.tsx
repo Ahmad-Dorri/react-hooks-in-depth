@@ -1,10 +1,10 @@
-import StateComponent from './components/state-component';
+import StateComponentForm from './components/state-component-form';
 
 function App() {
   return (
     <>
       <h1>Use State: </h1>
-      <StateComponent />
+      <StateComponentForm />
     </>
   );
 }

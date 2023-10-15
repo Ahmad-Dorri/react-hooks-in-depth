@@ -1,17 +1,24 @@
 import { useState } from 'react';
 
-export default function Form() {
+export default function StateComponentForm() {
   const [form, setForm] = useState({
     firstName: 'Barbara',
     lastName: 'Hepworth',
     email: 'bhepworth@sculpture.com',
   });
 
+  const [version, setVersion] = useState(0);
+
+  const handleClick = () => {
+    setVersion((prevVersion) => prevVersion + 1);
+  };
+
   return (
     <>
       <label>
         First name:
         <input
+          key={version}
           value={form.firstName}
           onChange={(e) => {
             setForm({
@@ -48,6 +55,29 @@ export default function Form() {
       <p>
         {form.firstName} {form.lastName} ({form.email})
       </p>
+      <button
+        onClick={() =>
+          setForm({
+            ...form,
+            email: '',
+            firstName: '',
+            lastName: '',
+          })
+        }>
+        reset form
+      </button>
+      <button
+        onClick={() =>
+          setForm({
+            ...form,
+            firstName: '',
+          })
+        }>
+        reset the firstname
+      </button>
+      <button onClick={() => handleClick}>
+        rerender the input for the first name
+      </button>
     </>
   );
 }
