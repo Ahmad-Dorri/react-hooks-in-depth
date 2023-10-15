@@ -7,9 +7,17 @@ const UseEffectComponent = () => {
   const [version, setVersion] = useState(0);
   const [number, setNumber] = useState(0);
   useEffect(() => {
+    let active = true;
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setNumber(data));
+      .then((data) => {
+        if (active) {
+          setNumber(data);
+        }
+      });
+    return () => {
+      active = false;
+    };
   }, [url, version]);
   return (
     <>
