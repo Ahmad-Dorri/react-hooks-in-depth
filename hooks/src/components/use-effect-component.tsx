@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 
+const url =
+  'https://www.random.org/integers/?num=1&min=1&max=100&col=5&base=10&format=plain&rnd=new';
+
 const UseEffectComponent = () => {
-  const [url, setUrl] = useState(
-    'https://www.random.org/integers/?num=1&min=1&max=100&col=5&base=10&format=plain&rnd=new'
-  );
   const [version, setVersion] = useState(0);
   const [number, setNumber] = useState(0);
+
   useEffect(() => {
     let active = true;
     fetch(url)
@@ -18,7 +19,7 @@ const UseEffectComponent = () => {
     return () => {
       active = false;
     };
-  }, [url, version]);
+  }, [version]);
   return (
     <>
       <button onClick={() => setVersion((prevVersion) => prevVersion + 1)}>
