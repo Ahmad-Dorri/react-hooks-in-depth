@@ -1,22 +1,25 @@
-import { useRef, useState } from 'react';
+import React, { LegacyRef, forwardRef, useRef, useState } from 'react';
+
+const MyInput = forwardRef((props: any, ref: LegacyRef<HTMLInputElement>) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setInputValue(e.target.value);
+
+  return <input onChange={onChange} value={inputValue} ref={ref} />;
+});
 
 const UseRefComponent = () => {
-  const [inputValue, setInputValue] = useState('');
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const handleClick = () => {
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
   return (
     <div>
-      <input
-        onChange={(e) => setInputValue(e.target.value)}
-        value={inputValue}
-        ref={inputRef}
-      />
+      <MyInput ref={inputRef} />
       <button onClick={handleClick}>focus the input</button>
     </div>
   );
 };
-
 export default UseRefComponent;
