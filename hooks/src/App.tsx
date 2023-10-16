@@ -1,5 +1,6 @@
 import StateComponentForm from './components/state-component-form';
 import UseEffectComponent from './components/use-effect-component';
+import UseReducerComponent from './components/use-reducer-component';
 import UseRefComponent from './components/use-ref-component';
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
       <UseEffectComponent />
       <h1>Use Ref: </h1>
       <UseRefComponent />
+      <h1>Use Reducer: </h1>
+      <UseReducerComponent />
     </>
   );
 }
