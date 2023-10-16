@@ -1,45 +1,35 @@
 import { useReducer } from 'react';
 
-enum CountActionKind {
-  INCREASE = 'INCREASE',
-  DECREASE = 'DECREASE',
-  INCREASEBYONE = 'INCREASEBYONE',
-  DECREASEBYONE = 'DECREASEBYONE',
+enum ChangeColorActionKind {
+  CHANGETOBLUE = 'CHANGETOBLUE',
+  CHANGETORED = 'CHANGETORED',
 }
 
-// An interface for our actions
-interface CountAction {
-  type: CountActionKind;
-  payload?: number;
-}
+type ChangeColorAction = {
+  type: ChangeColorActionKind;
+  payload: string;
+};
 
-// An interface for our state
-interface CountState {
-  count: number;
-}
+type ChangeColorState = {
+  color: string;
+};
 
-function counterReducer(state: CountState, action: CountAction) {
+function changeColorReducer(
+  state: ChangeColorState,
+  action: ChangeColorAction
+) {
   const { type, payload } = action;
   switch (type) {
-    case CountActionKind.INCREASE:
+    case ChangeColorActionKind.CHANGETOBLUE:
       return {
         ...state,
-        count: state.count + payload!,
+        color: payload,
       };
-    case CountActionKind.DECREASE:
+
+    case ChangeColorActionKind.CHANGETORED:
       return {
         ...state,
-        count: state.count - payload!,
-      };
-    case CountActionKind.INCREASEBYONE:
-      return {
-        ...state,
-        count: state.count + 1,
-      };
-    case CountActionKind.DECREASEBYONE:
-      return {
-        ...state,
-        count: state.count - 1,
+        color: payload,
       };
     default:
       return state;
@@ -47,43 +37,32 @@ function counterReducer(state: CountState, action: CountAction) {
 }
 
 const UseReducerComponent = () => {
-  const [state, dispatch] = useReducer(counterReducer, { count: 0 });
+  const [state, dispatch] = useReducer(changeColorReducer, {
+    color: '#ff2',
+  });
   return (
-    <div>
-      <p>{state.count}</p>
+    <div
+      style={{
+        backgroundColor: state.color,
+      }}>
+      UseReducerComponent
       <button
         onClick={() =>
           dispatch({
-            type: CountActionKind.INCREASE,
-            payload: 5,
+            type: ChangeColorActionKind.CHANGETOBLUE,
+            payload: '#22f',
           })
         }>
-        Increase the counter by 5
+        change the background to blue
       </button>
       <button
         onClick={() =>
           dispatch({
-            type: CountActionKind.DECREASE,
-            payload: 3,
+            type: ChangeColorActionKind.CHANGETOBLUE,
+            payload: '#f22',
           })
         }>
-        decrease the amount by 3
-      </button>
-      <button
-        onClick={() =>
-          dispatch({
-            type: CountActionKind.INCREASEBYONE,
-          })
-        }>
-        increase by one
-      </button>
-      <button
-        onClick={() =>
-          dispatch({
-            type: CountActionKind.DECREASEBYONE,
-          })
-        }>
-        decrease by one
+        change the background to red
       </button>
     </div>
   );
