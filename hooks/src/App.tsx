@@ -9,7 +9,7 @@ import UseRefComponent from './components/use-ref-component';
 
 function App() {
   const { theme } = useContext(ThemeContext);
-  console.log(theme);
+
   const className = 'body-' + theme;
   return (
     <div className={className}>
