@@ -6,10 +6,13 @@ import StateComponentForm from './components/state-component-form';
 import UseEffectComponent from './components/use-effect-component';
 import UseReducerComponent from './components/use-reducer-component';
 import UseRefComponent from './components/use-ref-component';
+import NumberComponent from './components/number';
+import { CountContext } from './context/count-context-provider';
+import { CountActionTypes } from './types/count-reducer-types';
 
 function App() {
   const { theme } = useContext(ThemeContext);
-
+  const { dispatch } = useContext(CountContext);
   const className = 'body-' + theme;
   return (
     <div className={className}>
@@ -21,6 +24,17 @@ function App() {
       <UseRefComponent />
       <h1>Use Reducer: </h1>
       <UseReducerComponent />
+      <h1>Use Context: </h1>
+      <NumberComponent />
+      <button
+        onClick={() =>
+          dispatch({
+            type: CountActionTypes.INCREAMENT,
+            payload: 5,
+          })
+        }>
+        increase the value
+      </button>
     </div>
   );
 }

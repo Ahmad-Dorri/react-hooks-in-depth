@@ -11,3 +11,15 @@
   background-color: #333;
   color: #fff;
 }
+
+h1 {
+  font-size: x-large;
+}
+
+h2 {
+  font-size: large;
+}
+
+h3 {
+  font-size: medium;
+}
