@@ -1,7 +1,10 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useCallback, useMemo, useReducer } from 'react';
 
-import { CountAction, CountState } from '../types/count-reducer-types';
-import { countReducer } from '../lib/count-reducer';
+import {
+  CountActionTypes,
+  CountAction,
+  CountState,
+} from '../types/count-reducer-types';
 
 const initialState: CountState = {
   count: 0,
@@ -16,10 +19,36 @@ const CountContext = createContext<{
 });
 
 const CountContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state, dispatch] = useReducer(countReducer, initialState);
+  const reducer = useCallback((state: CountState, action: CountAction) => {
+    const { type, payload } = action;
+    switch (type) {
+      case CountActionTypes.INCREAMENT:
+        return {
+          ...state,
+          count: state.count + payload,
+        };
+      case CountActionTypes.DECREMENT:
+        return {
+          ...state,
+          count: state.count - payload,
+        };
+      default:
+        return state;
+    }
+  }, []);
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const contextValue = useMemo(
+    () => ({
+      state,
+      dispatch,
+    }),
+    [state, dispatch]
+  );
 
   return (
-    <CountContext.Provider value={{ state, dispatch }}>
+    <CountContext.Provider value={contextValue}>
       {children}
     </CountContext.Provider>
   );
