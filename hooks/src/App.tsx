@@ -5,7 +5,6 @@ import { CountActionTypes } from './types/count-reducer-types';
 import StateComponentForm from './components/state-component-form';
 import UseEffectComponent from './components/use-effect-component';
 import UseReducerComponent from './components/use-reducer-component';
-import UseRefComponent from './components/use-ref-component';
 import NumberComponent from './components/number';
 import ColorContextBox from './components/color-context-box';
 
@@ -15,6 +14,7 @@ import {
   ColorActionTypes,
   ColorContext,
 } from './context/color-context-provider';
+import UseRefComponent from './components/use-ref-component';
 
 function App() {
   const [inputValue, setInputValue] = useState('');

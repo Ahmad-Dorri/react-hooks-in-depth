@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
-export default function StateComponentForm() {
+const StateComponentForm = memo(function StateComponentForm() {
   const [form, setForm] = useState({
     firstName: 'Barbara',
     lastName: 'Hepworth',
@@ -12,6 +12,8 @@ export default function StateComponentForm() {
   const handleClick = () => {
     setVersion((prevVersion) => prevVersion + 1);
   };
+
+  console.log('STATE COMPONENT MOUNTED');
 
   return (
     <>
@@ -80,4 +82,6 @@ export default function StateComponentForm() {
       </button>
     </>
   );
-}
+});
+
+export default StateComponentForm;
