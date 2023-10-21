@@ -13,8 +13,6 @@ const StateComponentForm = memo(function StateComponentForm() {
     setVersion((prevVersion) => prevVersion + 1);
   };
 
-  console.log('STATE COMPONENT MOUNTED');
-
   return (
     <>
       <label>

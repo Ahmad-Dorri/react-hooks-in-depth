@@ -15,6 +15,7 @@ import {
   ColorContext,
 } from './context/color-context-provider';
 import UseRefComponent from './components/use-ref-component';
+import UseTransitionComponent from './components/use-transition-component';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
@@ -66,6 +67,8 @@ function App() {
           Submit
         </button>
       </form>
+      <h1>Use Transition</h1>
+      <UseTransitionComponent />
     </div>
   );
 }
